@@ -8,4 +8,4 @@ requests
 Flask-WTF
 WTForms
 Flask-Bootstrap
-comtypes
+docx2pdf

@@ -1,6 +1,6 @@
 import os 
 from datetime import datetime
-import comtypes.client
+from docx2pdf import convert
 
 
 # Create the PDF Folder where the new files are going to be created.
@@ -43,20 +43,13 @@ def create_pdf_paths(docx_paths, pdf_folders):
 
 #Covert tthe docx files into pdf files
 def print_pdf(path):
-
-    wdFormatPDF = 17
+    
     pdf_path = path.replace(".docx", ".pdf")
 
     name = pdf_path.split('\\')[-1]
 
     try:
-        word = comtypes.client.CreateObject('Word.Application')
-        word.Visible = True
-        doc = word.Documents.Open(path)
-        doc.SaveAs(pdf_path, FileFormat=wdFormatPDF)
-        doc.Close()
-        word.Quit()
-        
+        convert(path, pdf_path, keep_active= True)        
         
     except Exception as e:
         print(e)
